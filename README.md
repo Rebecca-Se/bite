@@ -17,7 +17,7 @@ Please use the javascript template as necessary for your stuff.
 
 
 ## Manifest Plus
-Adds the following fields to the manifest for package browsers to pick up and show information better:
+Adds the following fields to the manifest for package browsers to pick up and show information better: 
 
 ```
 - includes: [] # list of files to include in the zip
