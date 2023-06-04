@@ -1,16 +1,21 @@
 let casterName = null;
+// @ts-ignore
 const tokens = canvas.tokens.selected;
 let caster = tokens.map((o) => o.actor)[0];
 if (!caster && !!casterName) {
+    // @ts-ignore
     caster = game.actors.entities.filter((o) => o.name.includes(casterName))[0];
 }
 let selectedactors = [];
 selectedactors.push(tokens.forEach((p) => p.actor));
+// @ts-ignore
 let phantom = selectedactors.filter(l => getProperty(l, "data.name") != "Christine")[0];
+// @ts-ignore
 let player = selectedactors.filter(o => o.testUserPermission(game.user, "OWNER"))[0];
 function healthCost(name) {
     let value = (Math.ceil(caster.data.data.classes.total.level / 4));
     let cha = caster.data.data.attribute.cha.mod;
+    // @ts-ignore
     let r = new Roll(`${value}d4 + ${cha}`);
     r.roll();
     r.toMessage({
@@ -21,8 +26,11 @@ function healthCost(name) {
 }
 let cost = healthCost("cost");
 if (phantom !== null) {
+    // @ts-ignore
     let pmchp = getProperty(phantom, "data.attribute.hp.current");
+    // @ts-ignore
     let pmthp = getProperty(phantom, "data.attribute.hp.temp");
+    // @ts-ignore
     let pmmhp = getProperty(phantom, "data.attribute.hp.max");
     if (pmmhp - pmthp == pmchp && pmthp >= cost) {
         phantom.update("data.attribute.hp.temp", `${pmthp - cost}`);
@@ -36,8 +44,11 @@ if (phantom !== null) {
     }
 }
 else {
+    // @ts-ignore
     let pchp = getProperty(player, "data.attribute.hp.current");
+    // @ts-ignore
     let pthp = getProperty(player, "data.attribute.hp.temp");
+    // @ts-ignore
     let pmhp = getProperty(player, "data.attribute.hp.max");
     if (pmhp - pthp == pchp && pthp >= cost) {
         player.update("data.attribute.hp.temp", `${pthp - cost}`);
