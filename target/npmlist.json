@@ -1,1 +1,1 @@
-{"version":"1.0.0","name":"foundry-typescript-template","dependencies":{"@types/node":{"version":"14.18.48"},"foundry-pc-types":{"version":"0.1.0"},"typescript":{"version":"4.9.5"}}}
+{"version":"1.0.0","name":"foundry-typescript-template","dependencies":{"@types/node":{"version":"14.18.48"},"typescript":{"version":"4.9.5"}}}
