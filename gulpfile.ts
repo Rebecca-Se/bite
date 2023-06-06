@@ -3,13 +3,14 @@ const ts = require('gulp-typescript');
 const project = ts.createProject('tsconfig.json')
 
 
-gulp.task('compile', () => {
+gulp.task('compile', async () => {
   return gulp.src('src/**/*.ts')
     .pipe(project())
     .pipe(gulp.dest('dist/'))
 })
 
 gulp.task('copy', async () => {
+  await gulp.task('compile');
   return new Promise<void>((resolve,reject) => { 
     gulp.src('README.md').pipe(gulp.dest("dist/"))
     gulp.src("src/module.json").pipe(gulp.dest('dist/'))
@@ -24,14 +25,14 @@ gulp.task('copy', async () => {
 gulp.task('build', gulp.parallel('compile', 'copy'));
 
 
-/*
 // This is supposed to copy the dist folder into the modules directory for testing. Only works if you've set it up the right way
 //This works if development path is FoundryVTT/Data/dev/modules/swade-item-macros
-const MODULEPATH = "../../../modules/swade-item-macros/"
+/*
+const MODULEPATH = "../../../modules/bitenom/"
 
 gulp.task('foundry', () => {
   return gulp.src('dist/**').pipe(gulp.dest(MODULEPATH))
 })
-*/
-gulp.task("update", gulp.series('build', 'foundry'))
 
+gulp.task("update", gulp.series('build', 'foundry'))
+*/
