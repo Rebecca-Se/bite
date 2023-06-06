@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const project = ts.createProject('tsconfig.json');
@@ -15,8 +6,8 @@ gulp.task('compile', () => {
         .pipe(project())
         .pipe(gulp.dest('dist/'));
 });
-gulp.task('copy', () => __awaiter(this, void 0, void 0, function* () {
-    return new Promise((resolve, reject) => {
+gulp.task('copy', async () => {
+    return /** @type {Promise<void>} */(new Promise((resolve, reject) => {
         gulp.src('README.md').pipe(gulp.dest("dist/"));
         gulp.src("src/module.json").pipe(gulp.dest('dist/'));
         gulp.src("src/lang/**").pipe(gulp.dest('dist/lang/'));
@@ -24,8 +15,8 @@ gulp.task('copy', () => __awaiter(this, void 0, void 0, function* () {
         gulp.src("src/styles/**").pipe(gulp.dest('dist/styles/'));
         gulp.src("src/assets/**").pipe(gulp.dest('dist/assets/'));
         resolve();
-    });
-}));
+    }));
+});
 gulp.task('build', gulp.parallel('compile', 'copy'));
 /*
 // This is supposed to copy the dist folder into the modules directory for testing. Only works if you've set it up the right way
