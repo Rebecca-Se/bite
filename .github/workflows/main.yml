@@ -58,7 +58,7 @@ jobs:
       with:
         replacesArtifacts: false
         name: Release ${{ steps.get-version.outputs.version }}
-        draft: true
+        draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: './dist/module.json,./module.zip'
